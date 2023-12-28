@@ -89,4 +89,50 @@ sudo smbpasswd -a [USERNAME]
 
 #### 🅐 연구실 공유 디렉토리 접근을 위한 설정 예시
 
-<iframe width="100%" height="1000px" src='https://modi.changwon.ac.kr/'>
+<h2>API 호출 및 결과 출력 예제</h2>
+
+<label for="inputString">문자열 입력:</label>
+<input type="text" id="inputString">
+<button onclick="callApi()">제출</button>
+
+<div id="resultContainer"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function callApi() {
+    // 입력된 문자열 가져오기
+    var inputString = document.getElementById('inputString').value;
+
+    // API 호출 (GET 메서드 사용)
+    $.ajax({
+        url: 'https://api.example.com/your-api-endpoint?input=' + encodeURIComponent(inputString),
+        type: 'GET',
+        success: function(response) {
+            // API 호출이 성공하면 결과를 출력
+            displayResult(response);
+        },
+        error: function(error) {
+            // API 호출이 실패하면 오류 메시지 출력
+            displayResult('API 호출 오류: ' + error.statusText);
+        }
+    });
+}
+
+function displayResult(result) {
+    // 결과를 출력할 요소 가져오기
+    var resultContainer = document.getElementById('resultContainer');
+
+    // 결과를 요소에 추가
+    resultContainer.innerHTML = '<p><strong>API 호출 결과:</strong> ' + result + '</p>';
+}
+</script>
+
+
+
+
+
+
+
+
+
+
